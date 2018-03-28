@@ -1,0 +1,9 @@
+l;Carlo;Neri;20201212
+L;Franco; Rossi; 19850415
+L;Nicola; Verdi; 19850415
+lo;Giorgio; Bordeaux; 19950805
+
+L; Giovanni; Ferrero; 19801004
+
+R;Marco; Gialli; 19601210;manager
+r; Michele; Viola; 19741110;amministratore

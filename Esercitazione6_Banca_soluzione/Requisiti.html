@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Banca</title>
+</head>
+<body>
+<h1 style="text-align: center;">Banca<br>
+</h1>
+Sviluppare un programma per la gestione di conti correnti di una banca.<br>
+Tutte le classi si trovano nel package <code>banca</code>.<br>
+<br>
+<hr style="width: 100%; height: 2px;">
+<h2>R1: Banca<br>
+</h2>
+
+Il programma funziona attraverso la classe principale <code>Banca</code> e permette di inserire conti correnti e transazioni.
+&Egrave; possibile aggiungere nuovi conti correnti tramite il metodo <code>aggiungiContoCorrente()</code> della classe <code>Banca</code>. Tale metodo riceve come parametri nome e cognome dell'intestatario e il saldo iniziale, assegna automaticamente un codice (a partire da 1), crea un oggetto di tipo <code>ContoCorrente</code> e ritorna il codice assegnato al conto. Per ottenere un conto corrente dato il codice del conto &egrave; possibile utilizzare il metodo <code>getContoCorrente</code> della medesima classe, che, ricevuto il codice di un conto corrente, restituisce un riferimento all'oggetto di classe <code>ContoCorrente</code>, oppure genera una eccezione <code>ErrContoInesistente</code>, qualora non sia possibile risalire a nessun conto corrente. 
+I metodi <code>getCodiceConto()</code>, <code>getNomeIntestatario()</code>, <code>getCognomeIntestatario()</code>, <code>getSaldo()</code> della classe <code>ContoCorrente</code> permettono di ottenere informazioni sul codice del conto, il nome e cognome dell'intestatario, e sul saldo attuale. 
+
+<br>
+
+<h2>R2: Transazioni<br>
+</h2>
+I soldi presenti sui conti correnti possono essere movimentati tramite transazioni, rappresentate dall'omonima classe. Sono possibili due tipi di transazione: bonifico e ricarica cellulare. <br>
+I bonifici vengono effettuati tramite il metodo <code>effettuaBonifico()</code> della classe <code>Banca</code>, che riceve come parametri il codice del conto corrente di origine e del conto corrente di destinazione, l'importo da trasferire dal conto di origine a quello di destinazione e la data del bonifico (in formato AAAAMMGG). Tale metodo effettua le opportune operazioni e genera le eccezioni <code>ErrContoInesistente</code> e <code>ErrContoScoperto</code> qualora non sia possibile identificare il conto corrente, oppure questo non disponga di abbastanza soldi per effettuare l'operazione (i conti correnti possono andare a zero, ma non avere saldo negativo).<br>
+Le ricariche cellulare, invece, vengono registrate nel sistema per mezzo del metodo <code>effettuaRicaricaCellulare()</code> della classe <code>Banca</code>. Tale metodo riceve come parametri il codice del conto corrente di origine, il numero di cellulare da ricaricare, l'importo della ricarica e la data dell'operazione e genera le medesime eccezioni del metodo <code>effettuaBonifico()</code>. <br>
+In entrambi i casi (bonifico e ricarica cellulare), se la transazione va a buon fine, la banca assenga a questa un codice numerico univoco a partire da 0.<br>
+N.B. in caso di bonifico, una transazione influenza due conti correnti, prelevando i soldi da quello di origine, e versandoli su quello di destinazione.<br>
+N.B. i codici delle transazioni sono univoci a livello di banca, non a livello di conto corrente.<br>
+
+<h2>R3: Elenchi conti correnti<br>
+</h2>
+&Egrave; possibile ottenere l'elenco dei conti correnti della banca tramite il metodo  <code>elencoContiCorrentiPerCodiceCrescente()</code> della classe <code>Banca</code>, che restituisce l'elenco dei conti correnti ordinati per codice conto crescente. 
+
+<h2>R4: Elenchi transazioni<br>
+</h2>
+Per ogni conto corrente &egrave; possibile ottenere l'elenco delle transazioni effettuate tramite i metodi <code>elencoTransazioniPerData()</code> e <code>elencoTransazioniPerTipoeImporto()</code> della classe <code>ContoCorrente</code>. Tali metodi restituiscono rispettivamente l'elenco delle transazioni, dalla pi&ugrave; recente alla pi&ugrave; vecchia, e l'elenco delle transazioni ordinate in base al tipo e importo, mettendo prima tutti i bonifici, ordinati in base a importo decrescente, e poi tutte le ricariche telefoniche, ordinate anch'esse in base a importo decrescente.
+
+
+<h2>R5: Interfaccia Grafica</h2>
+Realizzare l'interfaccia grafica per gestire i conti correnti simile alla
+seguente:<br>
+<br>
+<img style="width: 600px; height: 300px;" alt="Banca"
+ src="Finestra1.png"><br>
+<br>
+Quando si effettua l'accesso, vengono mostrati nella combobox "Seleziona conto" i conti inseriti nel sistema (ordinati in base a codice conto crescente).
+Quando l'utente seleziona un conto e clicca su "Visualizza dati conto", il sistema mostra il saldo del conto, e la lista delle transazioni effettuate per quel conto. Le transazioni sono stampate una per riga, riportando, nell'ordine, il codice della transazione, il numero del conto corrente di destinazione o del cellulare ricaricato, l'ammontare della transazione e la data, separati da uno spazio.<br>
+La visualizzazione di base, appena cliccato su "Visualizza dati conto" &egrave; quella per data. L'utente pu&ograve; decidere di cambiare visualizzazione e ordinare le transazioni per importo, cliccando sul pulsante "Per importo", o ritornare alla visualizzazione ordinata per data, cliccando sul pulsante "Per data".<br>
+
+<br>
+<img style="width: 600px; height: 300px;" alt="Informazione relativa a un conto corrente"
+ src="Finestra2.png"><br>
+<br>
+
+L'interfaccia grafica permette anche di inserire transazioni, specificando l'importo, la data della transazione e il numero di conto corrente di destinazione o di cellulare e cliccando rispettivamente su "Bonifico" o "Ricarica" a seconda del tipo di transazione che si vuole eseguire. Le transazioni eseguite vengono automaticamente registrate, e mostrate nella lista delle transazioni. <br>
+
+<br>
+<img style="width: 600px; height: 300px;" alt="Inserimento transazione"
+ src="Finestra3.png"><br>
+<br>
+
+<span style="font-weight: bold;">N.B. usare gli attributi forniti per consentire il test della classe mediante JUnit.</span><br>
+<br>
+<span style="font-weight: bold;">Suggerimenti<br>
+</span>
+Per una migliore disposizione dei contenuti, si utilizzino uno o pi&ugrave; <code>JPanel</code>.<br>
+Per la scelta del conto da visualizzare si usi un <code>JComboBox</code> ed il suo costruttore <code>JComboBox(Object[])</code>.<br>
+Per la lista di transazioni si usi un <code>JList</code>.
+Per aggiornare l'elenco si sfrutti il metodo <code>setListData(Object[])</code>.<br>
+La lista di transazioni pu&ograve; essere mostrata all'interno di un <code>JScrollPane</code>.<br>
+L'elemento selezionato in una lista pu&ograve; essere ottenuto con il
+metodo <code>getSelectedValue()</code>.<br>
+<br>
+<span style="font-weight: bold;"></span>
+<hr style="width: 100%; height: 2px;"><br>
+</body>
+</html>

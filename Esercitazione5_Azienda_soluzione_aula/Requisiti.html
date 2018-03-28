@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<head>
+
+  <title>Azienda</title>
+
+</head>
+
+<body>
+
+<h1 style="text-align: center;">Azienda<br>
+
+</h1>
+
+Sviluppare un programma che permetta di memorizzare le informazioni relative a dipendenti di un'Azienda.<br>
+
+Tutte le classi si trovano nel package <code>azienda</code>.<br>
+
+<br>
+
+<hr style="width: 100%; height: 2px;">
+
+<h2>R1: Dipendenti</h2>
+
+Il programma funziona attraverso la classe principale <code>GestioneAzienda</code> e permette di inserire dipendenti e responsabili all'interno del sistema.<br>
+
+I dipendenti sono caratterizzati da nome, cognome e data di nascita e matricola e implementano l'interfaccia <code>Lavoratore</code>.<br>
+
+I lavoratori possono essere aggiunti al sistema tramite il metodo <code>aggiungiLavoratore()</code> che riceve come parametri nome, cognome e data di nascita (nel formato AAAAMMGG), assegna automaticamente una matricola a partire da 100 e, se l'inserimento &egrave; andato a buon fine, la restituisce.<br>
+
+Se si cerca di inserire un lavoratore che ha qualche campo uguale a <code>null</code>, il sistema deve ignorare la richiesta, restituendo "-1". <br>
+<!--Lo stesso accade nel caso si fornisca una data di nascita successiva al giorno attuale. <br>-->
+
+Per recuperare le informazioni sui dipendenti inseriti si pu&ograve; utilizzare il metodo <code>getLavoratore()</code> che riceve come parametro la matricola e restituisce un oggetto che implementa l'interfaccia <code>Lavoratore</code>.<br>
+
+Se non esiste nessun lavoratore con la matricola specificata, viene generata un'eccezione di tipo <code>ErrLavoratoreInesistente</code>.<br>
+
+Il nome, il cognome, la matricola e la data di nascita possono essere letti tramite i metodi <code>getNome()</code>, <code>getCognome()</code>, <code>getMatricola()</code> e <code>getDataNascita()</code> dell'interfaccia <code>Lavoratore</code>.<br><br>
+
+<!--<i>Suggerimento: per ottenere la data attuale, nel formato aaaammgg &egrave; possibile utilizzare <code>new SimpleDateFormat("yyyyMMdd").format(new Date())</code> (importando <code>java.text.SimpleDateFormat</code> e <code>java.util.Date</code>)<br>
+	(esempio: <code>System.out.println(new SimpleDateFormat("yyyyMMdd").format(new Date()));</code>   ->  20161208).
+</i>-->
+
+
+<h2>R2: Responsabili</h2>
+
+I responsabili hanno le stesse caratteristiche dei dipendenti e sono inoltre caratterizzati dalla qualifica.<br>
+
+E' possibile registrare un responsabile presso il sistema tramite il metodo <code>aggiungiResponsabile()</code> che riceve come
+
+parametri nome, cognome, data di nascita e qualifica, assegna automaticamente la matricola (continuando la numerazione in base alla matricola assegnata all'ultimo dipendente/responsabile inserito) e la restituisce.<br>
+
+Se si cerca di inserire un responsabile che ha qualche campo uguale a <code>null</code>,<!-- o con data di nascita errata (identificata in modo analogo a quanto fatto durante l'inserimento di un dipendente),--> il sistema deve ignorare la richiesta e restituire "-1".<br>
+
+
+Per recuperare le informazioni sui responsabili si pu&ograve; utilizzare il
+
+metodo <code>getResponsabile()</code> che riceve
+
+come parametro la matricola e restituisce
+
+un oggetto che implementa l'interfaccia <code>Responsabile</code>.<br>
+
+Se nel sistema non &egrave; presente nessun responsabile
+
+con la matricola specificata, viene genera un'eccezione
+
+di tipo <code>ErrResponsabileInesistente</code>.<br>
+
+&Egrave; possibile conoscere la qualifica di un responsabile tramite il metodo <code>getQualifica()</code> dell'interfaccia
+
+<code>Responsabile</code>.<br><br>
+
+<h2>R3: Assegnazione Team e Responsabile</h2>
+
+Dipendenti e responsabili sono assegnati a team, tramite il metodo <code>assegnaATeam() </code>. Tale metodo riceve come parametri la matricola del lavoratore e il nome del team al quale assegnarlo e genera un'eccezione di tipo <code>ErrLavoratoreInesistente</code> qualora non esistesse nessun lavoratore con la matricola specificata.<br>
+
+Per ogni dipendente &egrave; anche specificato un responsabile, tramite il metodo <code>assegnaResponsabile() </code>della classe <code>GestioneAzienda</code>, che riceve come parametri la matricola del responsabile e quella del sottoposto, e genera le opportune eccezioni
+
+(<code>ErrLavoratoreInesistente</code>, <code>ErrResponsabileInesistente</code>) qualora le matricole specificate non corrispondano a dipendenti/responsabili inseriti nel sistema.
+Inoltre, dato che si presuppone che non sia possibile assegnare un dipendente a un responsabile assegnato a un altro team, tale metodo genera una eccezione di tipo <code>ErrTeamDiverso</code> nei casi in cui il team del responsabile sia diverso da quella del sottoposto. 
+<br>
+
+Dato un Lavoratore, &egrave; anche possibile sapere qual &egrave; il responsabile assegnatogli, tramite il metodo <code>getResponsabile()
+
+</code>dell'interfaccia <code>Lavoratore</code>, nonch&egrave; il nome del team al quale &egrave; assegnato, tramite il metodo <code>getNomeTeam()</code> della stessa classe.<br>
+
+N.B. I responsabili possono avere a loro volta un responsabile.<br>
+
+N.B. Ogni dipendente pu&ograve; avere un solo responsabile alla volta. <br>
+
+N.B. Se la matricola del responsabile e quella del sottoposto (passate al metodo <code>assegnaResponsabile()</code>) coincidono, il sistema deve ignorare la richiesta (un responsabile non pu&ograve; essere responsabile di se stesso)<br><br>
+
+<h2>R4: Elenco sottoposti<br>
+
+</h2>
+
+Dato un responsabile, deve essere possibile ottenere la lista dei suoi sottoposti
+
+tramite il metodo <code>getSottopostiInOrdineDiEtaDecrescente() </code>dell'interfaccia
+
+<code>Responsabile</code>. Tale lista deve contenere i sottoposti in ordine di et&agrave; decrescente (dal pi&ugrave; vecchio al pi&ugrave; giovane), e, in caso di sottoposti nati lo stesso giorno, in ordine alfabetico in base al cognome e nome.<br>
+
+Per ogni responsabile &egrave; inoltre possibile ottenere la lista dei suoi sottoposti ordinandoli in base a matricola crescente, per mezzo del metodo <code>getSottopostiOrdinatiPerMatricolaCrescente()</code> dell'interfaccia <code>Responsabile</code>.<br><br>
+
+
+
+<h2>R5: Caricamento da file</h2>
+
+Tramite il metodo <code>caricaDati()</code>,
+
+che riceve come parametro il nome di un file, deve essere possibile
+
+leggere da file i lavoratori e i responsabili, e inserirli nel sistema.<br>
+
+Il file &egrave; organizzato per righe e ogni riga pu&ograve; contenere un
+
+responsabile o un lavoratore.<br>
+
+Le righe che contengono un lavoratore iniziano con la lettera "L" (o "l") seguita
+
+da nome, cognome e data di nascita. Le righe che contengono un responsabile
+
+iniziano con la lettera "R" (o "r") seguita da nome, cognome, data di nascita e
+
+qualifica. Gli elementi di ciascuna riga sono separati gli uni
+
+dagli altri tramite il carattere ";".<br>
+
+In caso di errore nelle informazioni presenti su una riga (ad esempio riga vuota, riga con alcuni dati mancanti, errori di battitura relativi al primo campo, etc.) il metodo deve essere
+
+in grado di ignorarla e passare a quella successiva. Qualora, prima o dopo gli elementi separati da virgole, fossero presenti uno o pi&ugrave; spazi (ad esempio <i>R;Marco; Gialli; 19601210;manager</i>), questi devono essere rimossi prima dell'inserimento nel sistema.<br>
+
+Il metodo ritorna un intero relativo al numero di responsabili e lavoratori correttamente inserito nel sistema. <br><br>
+
+In caso di errori di Input/Output il metodo scatena una IOException.<br>
+
+&nbsp;<br>
+<hr style="width: 100%; height: 2px;"><br>
+
+</body>
+
+</html>
+

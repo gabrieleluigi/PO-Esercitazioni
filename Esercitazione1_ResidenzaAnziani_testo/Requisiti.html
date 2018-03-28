@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+</head>
+<body>
+<h2 style="text-align: center;">Programmazione a oggetti</h2>
+<h2 style="text-align: center;">Esercitazione 1</h2>
+<h1 style="text-align: center;">Residenza Anziani</h1>
+<br>
+
+
+Progettare e realizzare un programma che possa essere utilizzato per la gestione degli ospiti in una residenza per anziani.
+Per ogni ospite, la residenza memorizza nome, cognome e data di nascita.<br>
+<DIV align="right"><i>La classe <code><span
+ style="font-weight: bold;">Principale</span></code> (contenente il main) riporta tutte le operazioni che vengono effettuate e invoca i metodi della classe <code><span
+ style="font-weight: bold;">Residenza</span></code> (contenuta nel package <code><span
+ style="font-weight: bold;">residenza</span></code>). <br>
+Per risolvere l'esercitazione &egrave; necessario definire, tra gli altri, il corpo dei metodi della classe <code><span
+ style="font-weight: bold;">Residenza</span></code> e gli eventuali attributi.</i></DIV><br><br>
+
+E' possibile impostare e accedere al nome e all'indirizzo della residenza rispettivamente tramite i metodi <code><span
+ style="font-weight: bold;">setNome()</span></code> e <code><span
+ style="font-weight: bold;">getNome()</span></code> e <code><span
+ style="font-weight: bold;">setIndirizzo()</span></code> e <code><span
+ style="font-weight: bold;">getIndirizzo()</span></code>.
+ <br>
+<DIV align="right"><i>Una variabile di tipo stringa, in Java rappresentata da una classe ad-hoc, pu&ograve; essere dichiarata come <code>String nomeStringa;</code></i></DIV>
+<br><br>
+
+
+L'aggiunta di un nuovo ospite viene effettuata tramite il metodo <code><span
+ style="font-weight: bold;">aggiungiOspite()</span></code>, che riceve i seguenti parametri: nome, cognome, data di nascita (nel formato AAAAMMGG) e memorizza nel sistema le relative informazioni.
+
+<br><br>
+Per accedere al primo ospite memorizzato si utilizza il metodo <code><span
+ style="font-weight: bold;">primo()</span></code>, che restituisce una stringa contenente
+  nome, cognome e data di nascita separati da uno spazio (ad esempio: "<i>Marco Verdi 19200630</i>"").
+  In modo analogo, &egrave; possible accedere all'ultimo ospite aggiunto tramite il metodo <code><span
+   style="font-weight: bold;">ultimo()</span></code>, che restituisce una stringa nel medesimo formato del metodo <code><span
+    style="font-weight: bold;">primo()</span></code>.
+<br>
+<DIV align="right"><i>La sintassi per la dichiarazione di una variabile di tipo array &egrave;: <code>Tipo[] nomeArray;</code> oppure <code>Tipo nomeArray[];</code>. <br>
+La sintassi per allocare la memoria per contenere <code>n</code> elementi dell'array &egrave; <code>nomeArray = new Tipo[n];</code><br>
+&Egrave; possibile accedere ai singoli elementi dell'array indicandone la posizione, ad esempio <code>nomeArray[3];</code> per accedere al quarto elemento dell'array.<br>
+Due stringhe possono essere concatenate tramite l'operatore "+".
+</i></DIV>
+
+
+<br><br>
+Per accedere alle informazioni relative a un ospite qualsiasi si utilizza il metodo <code><span
+ style="font-weight: bold;">ospite()</span></code>, che riceve come parametro il numero d'ordine dell'ospite (a partire da 1) e restituisce una
+ stringa con lo stesso formato utilizzato dal metodo <code><span
+ style="font-weight: bold;">primo()</span></code>. Si noti come <code><span
+ style="font-weight: bold;">primo()==ospite(1)</span></code>.
+<br><br>
+Il metodo <code><span
+ style="font-weight: bold;">elenco()</span></code> restituisce una stringa con l'elenco degli ospiti nella residenza.
+ Ogni ospite &egrave; riportato su una riga diversa, nello stesso formato utilizzato dai metodi <code><span
+ style="font-weight: bold;">primo()</span></code> e <code><span
+ style="font-weight: bold;">ospite()</span></code>.
+ Ogni riga, tranne l'ultima, termina con il carattere ';'. L'ultima riga termina invece con un carattere '.'.
+ Ad esempio:
+ <br>
+ <i>Marco Verdi 19200630;<br>
+Luca Rossi 19321028;<br>
+Martina Blu 19380226;<br>
+Giovanna Gialli 19270101.</i>
+<DIV align="right"><i>Per andare a capo, utilizzare la combinazione <code>\n</code>.</i></DIV>
+
+ <br><br>
+Si assuma che la residenza possa ospitare al pi&ugrave; 100 ospiti.
+<br><br>
+
+<br><br><hr style="width: 100%; height: 2px;"><br>
+</body>
+</html>
